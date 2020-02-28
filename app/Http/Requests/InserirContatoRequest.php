@@ -26,9 +26,9 @@ class InserirContatoRequest extends FormRequest
         return [
             'nome'     => 'required|max:255|string',
             'email'    => 'required|max:100|email',
-            'telefone' => 'required|max:11|numeric',
+            'telefone' => 'required|max:11|string',
             'mensagem' => 'required|max:1000|string',
-            'arquivo'  => 'required|file|mimes:pdf,doc,docx,odt|max:500',
+            'arquivo'  => 'required|file|mimes:pdf,doc,docx,odt,txt|max:500',
         ];
     }
 }
