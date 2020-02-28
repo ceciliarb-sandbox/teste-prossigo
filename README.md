@@ -14,6 +14,7 @@ cp .env.example .env
 npm install
 composer install
 php artisan key:generate
+php artisan storage:link
 touch database/database.sqlite
 php artisan migrate
 npm run dev
