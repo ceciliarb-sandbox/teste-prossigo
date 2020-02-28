@@ -11,7 +11,7 @@ class FeedbackEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $contato;
+    public $contato;
 
     /**
      * Create a new message instance.
@@ -30,7 +30,7 @@ class FeedbackEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('cecilia@prossigo.com', 'Cecilia Teste Prossigo')
+        return $this->from(env('MAIL_FROM_ADDRESS', 'cecilia@prossigo.com'), env('MAIL_FROM_NAME','Cecilia Teste Prossigo'))
             ->subject('Confirmacao de contato')
             ->markdown('emails.feedback')
             ->with([

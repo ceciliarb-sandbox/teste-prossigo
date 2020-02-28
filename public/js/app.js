@@ -11791,6 +11791,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -48212,6 +48213,16 @@ var render = function() {
                         ])
                       : _vm._e()
                   ]),
+                  _vm._v(" "),
+                  _vm.arquivo
+                    ? _c("div", { staticClass: "text-info" }, [
+                        _c("small", [
+                          _vm._v(
+                            "Arquivo " + _vm._s(_vm.arquivo.name) + " carregado"
+                          )
+                        ])
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-3" }, [
                     _c("div", { staticClass: "custom-file" }, [

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\InserirContatoRequest;
 use App\Contato;
@@ -16,12 +15,7 @@ class ContatoController extends Controller
         $contato = new Contato();
 
         try {
-            $nome_arquivo = $request->arquivo->getClientOriginalName();
-            $cont_arquivo = file_get_contents($request->arquivo->getRealPath());
-            $b_arq_salvo  = Storage::disk('public')->put($nome_arquivo, $cont_arquivo);
-            if(!$b_arq_salvo) throw new Exception("Nao foi possivel salvar o arquivo", 500);
-            
-            $url_arquivo  = asset("storage/$nome_arquivo");
+            $url_arquivo  = $contato->saveFile($request->arquivo);
 
             $contato->nome        = $request->nome;
             $contato->email       = $request->email;
@@ -38,7 +32,7 @@ class ContatoController extends Controller
             abort(422, $e->getMessage());
         }
     
-        return response()->json(compact($contato));
+        return response($contato);
     }
 
     public function recuperar() {

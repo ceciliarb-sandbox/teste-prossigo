@@ -66,6 +66,7 @@
                                     <div class="text-danger" v-if="$v.mensagem.$error && !$v.mensagem.required"><small>Campo obrigatório.</small></div>
                                 </div>
 
+                                <div class="text-info" v-if="arquivo"><small>Arquivo {{arquivo.name}} carregado</small></div>
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="arquivo" ref='arquivo' @change="loadFile">
