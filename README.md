@@ -11,9 +11,11 @@
 ```bash
 git clone https://github.com/ceciliarb-sandbox/teste-prossigo
 cp .env.example .env
+npm install
 composer install
 php artisan key:generate
-npm install
+touch database/database.sqlite
+php artisan migrate
 npm run dev
 php artisan serve
 ```
