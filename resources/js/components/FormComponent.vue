@@ -68,7 +68,7 @@
 
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="arquivo">
+                                        <input type="file" class="custom-file-input" id="arquivo" ref='arquivo' @change="loadFile">
                                         <label class="custom-file-label" for="arquivo">Escolher arquivo</label>
                                     </div>
                                 </div>
@@ -101,6 +101,7 @@
                 mensagem: "",
                 arquivo: null,
                 errors: null,
+                formData: null,
             }
         },
         validations: {
@@ -120,28 +121,38 @@
             }
         },
         methods: {
+            loadFile() {
+                this.arquivo = this.$refs.arquivo.files[0];
+            },
             submit(e) {
                 this.errors = null
                 e.preventDefault()
                 this.$v.$touch()
                 if (!this.$v.$invalid) {
-                    axios.post('/api/contato', {
-                        nome: this.nome,
-                        email: this.email,
-                        telefone: this.telefone,
-                        mensagem: this.mensagem,
-                        arquivo: this.arquivo, 
-                    })
-                    .then(() => {
+                    this.$root.$data.isLoading = true
+
+                    this.formData.append('nome',     this.nome);
+                    this.formData.append('email',    this.email);
+                    this.formData.append('telefone', this.telefone);
+                    this.formData.append('mensagem', this.mensagem);
+                    this.formData.append('arquivo',  this.arquivo);
+
+                    axios.post('/api/contato', this.formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }).then(() => {
                         this.$router.push('/')
-                    })
-                    .catch((err) => {
+                        this.$root.$data.isLoading = false
+                    }).catch((err) => {
                         this.errors = err.response.data.errors
+                        this.$root.$data.isLoading = false
                     })
                 }
             }
         },
         mounted() {
+            this.formData = new FormData();
         }
     }
 </script>

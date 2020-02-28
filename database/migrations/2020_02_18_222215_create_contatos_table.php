@@ -17,6 +17,7 @@ class CreateContatosTable extends Migration
             $table->bigIncrements('id');
             $table->char('nome', 255);
             $table->char('email', 100);
+            $table->char('ip_origem', 15);
             $table->bigInteger('telefone');
             $table->longText('mensagem');
             $table->char('url_arquivo', 255);
