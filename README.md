@@ -10,14 +10,15 @@
 ## Instalação
 ```bash
 git clone https://github.com/ceciliarb-sandbox/teste-prossigo
+cd teste-prossigo
 cp .env.example .env
 npm install
+npm run dev
 composer install
 php artisan key:generate
 php artisan storage:link
 touch database/database.sqlite
 php artisan migrate
-npm run dev
 php artisan serve
 ```
 
