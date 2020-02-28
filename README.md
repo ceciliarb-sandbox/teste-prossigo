@@ -11,8 +11,8 @@
 ```bash
 git clone https://github.com/ceciliarb-sandbox/teste-prossigo
 cp .env.example .env
-php artisan key:generate
 composer install
+php artisan key:generate
 npm install
 npm run dev
 php artisan serve
