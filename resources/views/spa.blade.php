@@ -12,7 +12,7 @@
     </head>
     <body class="bg-light">
         <div class="container-full">
-            <div class="content">
+            <div class="content vld-parent">
                 <div id="app">
                     <ul class="nav bg-info mb-2">
                         <li class="nav-item">
@@ -22,7 +22,8 @@
                             <a class="nav-link text-light" href="{{ url('/#/form') }}">Contato</a>
                         </li>
                     </ul>
-    
+                    <loading :active.sync="isLoading" :is-full-page="fullPage"></loading>
+
                     <router-view></router-view>
                 </div>
             </div>
